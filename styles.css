@@ -1,0 +1,404 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ff9a56, #ff6b35);
+    min-height: 100vh;
+    color: #333;
+}
+
+.game-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: #d35400;
+    margin-bottom: 10px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.score-board {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.game-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.ingredients-section,
+.cooking-section,
+.recipe-section {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.ingredients-section h3,
+.cooking-section h3,
+.recipe-section h3 {
+    margin-bottom: 20px;
+    color: #d35400;
+    font-size: 1.5em;
+    text-align: center;
+    border-bottom: 2px solid #f39c12;
+    padding-bottom: 10px;
+}
+
+.ingredients-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.ingredient {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid #ecf0f1;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+.ingredient:hover {
+    border-color: #f39c12;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+}
+
+.ingredient.selected {
+    border-color: #27ae60;
+    background: #e8f5e8;
+    transform: scale(0.95);
+}
+
+.ingredient.used {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.ingredient img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 8px;
+}
+
+.ingredient span {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+}
+
+.cooking-pan {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #34495e, #2c3e50);
+    margin: 0 auto 20px;
+    position: relative;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+    border: 8px solid #7f8c8d;
+}
+
+.pan-contents {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border-radius: 50%;
+    background: #ecf0f1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.empty-pan {
+    color: #7f8c8d;
+    font-style: italic;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.pan-ingredient {
+    font-size: 1.5em;
+    margin: 2px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.cooking-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.control-btn {
+    padding: 12px 20px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-size: 0.9em;
+}
+
+.control-btn:hover:not(:disabled) {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+}
+
+.control-btn:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.cooking-progress {
+    text-align: center;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #ecf0f1;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #f39c12, #e67e22);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 10px;
+}
+
+#cooking-status {
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.recipe-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background: #f8f9fa;
+    border-left: 4px solid #ecf0f1;
+    transition: all 0.3s ease;
+}
+
+.step.active {
+    border-left-color: #f39c12;
+    background: #fef9e7;
+}
+
+.step.completed {
+    border-left-color: #27ae60;
+    background: #e8f5e8;
+}
+
+.step-number {
+    background: #95a5a6;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.step.active .step-number {
+    background: #f39c12;
+}
+
+.step.completed .step-number {
+    background: #27ae60;
+}
+
+.step-text {
+    flex: 1;
+    font-size: 0.9em;
+}
+
+.step-status {
+    font-size: 1.2em;
+}
+
+.messages {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    padding: 15px;
+    min-height: 60px;
+    max-height: 120px;
+    overflow-y: auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.message {
+    padding: 5px 0;
+    border-bottom: 1px solid #ecf0f1;
+    color: #2c3e50;
+}
+
+.message:last-child {
+    border-bottom: none;
+}
+
+.message.success {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.message.warning {
+    color: #f39c12;
+    font-weight: bold;
+}
+
+.message.error {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.game-over-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.game-over-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 90%;
+}
+
+.game-over-content h2 {
+    color: #d35400;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.final-dish {
+    font-size: 5em;
+    margin: 20px 0;
+}
+
+.final-score {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 20px 0;
+}
+
+.pan-cooking {
+    animation: sizzle 0.5s infinite alternate;
+}
+
+@keyframes sizzle {
+    0% { transform: rotate(-1deg); }
+    100% { transform: rotate(1deg); }
+}
+
+.stirring {
+    animation: stir 1s ease-in-out;
+}
+
+@keyframes stir {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(10deg); }
+    75% { transform: rotate(-10deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game-area {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .ingredients-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .score-board {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    header h1 {
+        font-size: 2em;
+    }
+    
+    .cooking-controls {
+        justify-content: center;
+    }
+    
+    .control-btn {
+        font-size: 0.8em;
+        padding: 10px 15px;
+    }
+}
