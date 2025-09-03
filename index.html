@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monster Battle Arena</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-ui">
+            <div class="player-info">
+                <div class="player1-info">
+                    <h3>Player 1</h3>
+                    <div class="health-bar">
+                        <div class="health-fill" id="player1Health"></div>
+                    </div>
+                    <p>HP: <span id="player1HP">100</span>/100</p>
+                    <p>Score: <span id="player1Score">0</span></p>
+                </div>
+                <div class="player2-info">
+                    <h3>Player 2</h3>
+                    <div class="health-bar">
+                        <div class="health-fill" id="player2Health"></div>
+                    </div>
+                    <p>HP: <span id="player2HP">100</span>/100</p>
+                    <p>Score: <span id="player2Score">0</span></p>
+                </div>
+            </div>
+            <div class="game-status">
+                <h2 id="gameLevel">Level 1</h2>
+                <p id="gameMessage">Fight the monsters!</p>
+            </div>
+        </div>
+        
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        
+        <div class="controls">
+            <div class="player1-controls">
+                <h4>Player 1 Controls:</h4>
+                <p>WASD - Move</p>
+                <p>SPACE - Attack</p>
+            </div>
+            <div class="player2-controls">
+                <h4>Player 2 Controls:</h4>
+                <p>Arrow Keys - Move</p>
+                <p>ENTER - Attack</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="start-screen" id="startScreen">
+        <h1>Monster Battle Arena</h1>
+        <p>Two players must work together to defeat waves of monsters and three powerful bosses!</p>
+        <button id="startButton">Start Game</button>
+    </div>
+
+    <div class="game-over-screen" id="gameOverScreen" style="display: none;">
+        <h1 id="gameOverTitle">Game Over</h1>
+        <p id="gameOverMessage"></p>
+        <button id="restartButton">Play Again</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(45deg, #1a1a2e, #16213e);
+    color: white;
+    overflow: hidden;
+}
+
+/* Game Container */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Game UI */
+.game-ui {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 10px;
+}
+
+.player-info {
+    display: flex;
+    gap: 20px;
+}
+
+.player1-info, .player2-info {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #00ff00;
+    min-width: 150px;
+}
+
+.player2-info {
+    border-color: #ff6b6b;
+}
+
+.health-bar {
+    width: 100px;
+    height: 10px;
+    background: #333;
+    border: 1px solid #fff;
+    margin: 5px 0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.health-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff0000, #ffff00, #00ff00);
+    transition: width 0.3s ease;
+    width: 100%;
+}
+
+.game-status {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #ffd700;
+}
+
+/* Canvas */
+#gameCanvas {
+    border: 3px solid #fff;
+    background: linear-gradient(180deg, #87CEEB 0%, #228B22 70%, #8B4513 100%);
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 10px;
+}
+
+.player1-controls, .player2-controls {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #00ff00;
+    text-align: center;
+}
+
+.player2-controls {
+    border-color: #ff6b6b;
+}
+
+/* Start Screen */
+.start-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.start-screen h1 {
+    font-size: 48px;
+    color: #ffd700;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+}
+
+.start-screen p {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 30px;
+    max-width: 600px;
+    line-height: 1.5;
+}
+
+#startButton, #restartButton {
+    font-size: 24px;
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(45deg, #ff6b6b, #ffd700);
+    color: black;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+}
+
+#startButton:hover, #restartButton:hover {
+    transform: scale(1.1);
+}
+
+/* Game Over Screen */
+.game-over-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.game-over-screen h1 {
+    font-size: 48px;
+    color: #ff6b6b;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+}
+
+.game-over-screen p {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .game-ui {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .player-info {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #gameCanvas {
+        width: 100%;
+        max-width: 700px;
+        height: auto;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+}
+
+/* Pixel Art Styling */
+#gameCanvas {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+/* Animation Classes */
+.damage-flash {
+    animation: damageFlash 0.5s ease;
+}
+
+@keyframes damageFlash {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(2) hue-rotate(0deg); }
+}
+
+.boss-warning {
+    animation: bossWarning 2s ease;
+}
+
+@keyframes bossWarning {
+    0%, 100% { color: #ffd700; }
+    50% { color: #ff0000; }
+}
