@@ -3,62 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monster Battle Arena</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Chicken Curry Cooking Simulator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="game-container">
-        <div class="game-ui">
-            <div class="player-info">
-                <div class="player1-info">
-                    <h3>Player 1</h3>
-                    <div class="health-bar">
-                        <div class="health-fill" id="player1Health"></div>
+        <header>
+            <h1>🍛 Chicken Curry Cooking Simulator 🍛</h1>
+            <div class="score-board">
+                <span>Score: <span id="score">0</span></span>
+                <span>Time: <span id="timer">300</span>s</span>
+            </div>
+        </header>
+
+        <div class="game-area">
+            <!-- Ingredients Section -->
+            <div class="ingredients-section">
+                <h3>Ingredients</h3>
+                <div class="ingredients-grid">
+                    <div class="ingredient" data-ingredient="chicken" data-required="true">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='60'%3E🐔%3C/text%3E%3C/svg%3E" alt="Chicken">
+                        <span>Chicken</span>
                     </div>
-                    <p>HP: <span id="player1HP">100</span>/100</p>
-                    <p>Score: <span id="player1Score">0</span></p>
-                </div>
-                <div class="player2-info">
-                    <h3>Player 2</h3>
-                    <div class="health-bar">
-                        <div class="health-fill" id="player2Health"></div>
+                    <div class="ingredient" data-ingredient="onions" data-required="true">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='60'%3E🧅%3C/text%3E%3C/svg%3E" alt="Onions">
+                        <span>Onions</span>
                     </div>
-                    <p>HP: <span id="player2HP">100</span>/100</p>
-                    <p>Score: <span id="player2Score">0</span></p>
+                    <div class="ingredient" data-ingredient="tomatoes" data-required="true">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='60'%3E🍅%3C/text%3E%3C/svg%3E" alt="Tomatoes">
+                        <span>Tomatoes</span>
+                    </div>
+                    <div class="ingredient" data-ingredient="garlic" data-required="true">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='60'%3E🧄%3C/text%3E%3C/svg%3E" alt="Garlic">
+                        <span>Garlic</span>
+                    </div>
+                    <div class="ingredient" data-ingredient="ginger" data-required="true">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='60'%3E🫚%3C/text%3E%3C/svg%3E" alt="Ginger">
+                        <span>Ginger</span>
+                    </div>
+                    <div class="ingredient" data-ingredient="curry-powder" data-required="true">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='60'%3E🌶️%3C/text%3E%3C/svg%3E" alt="Curry Powder">
+                        <span>Curry Powder</span>
+                    </div>
+                    <div class="ingredient" data-ingredient="coconut-milk" data-required="true">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='60'%3E🥥%3C/text%3E%3C/svg%3E" alt="Coconut Milk">
+                        <span>Coconut Milk</span>
+                    </div>
+                    <div class="ingredient" data-ingredient="salt" data-required="true">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='60'%3E🧂%3C/text%3E%3C/svg%3E" alt="Salt">
+                        <span>Salt</span>
+                    </div>
+                    <div class="ingredient" data-ingredient="oil" data-required="false">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='60'%3E🫒%3C/text%3E%3C/svg%3E" alt="Oil">
+                        <span>Oil</span>
+                    </div>
+                    <div class="ingredient" data-ingredient="cilantro" data-required="false">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='60'%3E🌿%3C/text%3E%3C/svg%3E" alt="Cilantro">
+                        <span>Cilantro</span>
+                    </div>
                 </div>
             </div>
-            <div class="game-status">
-                <h2 id="gameLevel">Level 1</h2>
-                <p id="gameMessage">Fight the monsters!</p>
+
+            <!-- Cooking Area -->
+            <div class="cooking-section">
+                <h3>Cooking Area</h3>
+                <div class="cooking-pan" id="cooking-pan">
+                    <div class="pan-contents" id="pan-contents">
+                        <div class="empty-pan">Click ingredients to add them!</div>
+                    </div>
+                </div>
+                
+                <div class="cooking-controls">
+                    <button id="start-cooking" class="control-btn" disabled>Start Cooking</button>
+                    <button id="add-spices" class="control-btn" disabled>Add More Spices</button>
+                    <button id="stir" class="control-btn" disabled>Stir</button>
+                    <button id="taste" class="control-btn" disabled>Taste</button>
+                </div>
+
+                <div class="cooking-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="cooking-progress"></div>
+                    </div>
+                    <span id="cooking-status">Add ingredients to start cooking!</span>
+                </div>
+            </div>
+
+            <!-- Recipe Guide -->
+            <div class="recipe-section">
+                <h3>Recipe Guide</h3>
+                <div class="recipe-steps">
+                    <div class="step" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-text">Add chicken and basic ingredients</span>
+                        <span class="step-status">⏳</span>
+                    </div>
+                    <div class="step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-text">Start cooking to brown the chicken</span>
+                        <span class="step-status">⏳</span>
+                    </div>
+                    <div class="step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-text">Add spices and stir well</span>
+                        <span class="step-status">⏳</span>
+                    </div>
+                    <div class="step" data-step="4">
+                        <span class="step-number">4</span>
+                        <span class="step-text">Add coconut milk and simmer</span>
+                        <span class="step-status">⏳</span>
+                    </div>
+                    <div class="step" data-step="5">
+                        <span class="step-number">5</span>
+                        <span class="step-text">Taste and adjust seasoning</span>
+                        <span class="step-status">⏳</span>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <canvas id="gameCanvas" width="800" height="600"></canvas>
-        
-        <div class="controls">
-            <div class="player1-controls">
-                <h4>Player 1 Controls:</h4>
-                <p>WASD - Move</p>
-                <p>SPACE - Attack</p>
-            </div>
-            <div class="player2-controls">
-                <h4>Player 2 Controls:</h4>
-                <p>Arrow Keys - Move</p>
-                <p>ENTER - Attack</p>
+
+        <!-- Game Messages -->
+        <div class="messages" id="messages"></div>
+
+        <!-- Game Over Screen -->
+        <div class="game-over-screen" id="game-over-screen" style="display: none;">
+            <div class="game-over-content">
+                <h2 id="game-over-title">Cooking Complete!</h2>
+                <div class="final-dish">🍛</div>
+                <p id="game-over-message">Your curry is ready!</p>
+                <div class="final-score">
+                    <span>Final Score: <span id="final-score">0</span></span>
+                </div>
+                <button id="play-again" class="control-btn">Cook Again</button>
             </div>
         </div>
-    </div>
-
-    <div class="start-screen" id="startScreen">
-        <h1>Monster Battle Arena</h1>
-        <p>Two players must work together to defeat waves of monsters and three powerful bosses!</p>
-        <button id="startButton">Start Game</button>
-    </div>
-
-    <div class="game-over-screen" id="gameOverScreen" style="display: none;">
-        <h1 id="gameOverTitle">Game Over</h1>
-        <p id="gameOverMessage"></p>
-        <button id="restartButton">Play Again</button>
     </div>
 
     <script src="script.js"></script>
